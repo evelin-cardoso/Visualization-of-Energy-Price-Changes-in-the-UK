@@ -1,0 +1,61 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
+import plotly.express as px
+
+# Data preparation
+energy_data = {
+    'Time Period': ['July', 'August', 'September', 'October'],
+    'Gas Price (p/kWh)': [5.48, 5.48, 5.48, 6.02],
+    'Electricity Price (p/kWh)': [22.36, 22.36, 22.36, 24.00],
+    'Typical Annual Bill (£)': [1568, 1568, 1568, 1723]
+}
+df = pd.DataFrame(energy_data)
+
+# Plot 1: Line Chart / Gráfico 1: Gráfico de Linha
+plt.figure(figsize=(10, 6))
+plt.plot(df['Time Period'], df['Gas Price (p/kWh)'], label='Gas Price (p/kWh)', marker='o')
+plt.plot(df['Time Period'], df['Electricity Price (p/kWh)'], label='Electricity Price (p/kWh)', marker='o')
+plt.title('Energy Prices Over Time')
+plt.xlabel('Time Period')
+plt.ylabel('Price (p/kWh)')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Plot 2: Bar Chart / Gráfico 2: Gráfico de Barras
+plt.figure(figsize=(10, 6))
+bar_width = 0.35
+index = np.arange(len(df['Time Period']))
+plt.bar(index, df['Gas Price (p/kWh)'], bar_width, label='Gas Price (p/kWh)', color='skyblue')
+plt.bar(index + bar_width, df['Electricity Price (p/kWh)'], bar_width, label='Electricity Price (p/kWh)', color='salmon')
+plt.title('Gas and Electricity Prices')
+plt.xlabel('Time Period')
+plt.ylabel('Price (p/kWh)')
+plt.xticks(index + bar_width / 2, df['Time Period'])
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# Plot 3: 3D Scatter Plot with Plotly / Gráfico 3: Gráfico de Dispersão 3D com Plotly
+fig = go.Figure(data=[go.Scatter3d(
+    x=df['Time Period'],
+    y=df['Gas Price (p/kWh)'],
+    z=df['Electricity Price (p/kWh)'],
+    mode='markers',
+    marker=dict(
+        size=10,
+        color=df['Typical Annual Bill (£)'],  # set color to an array/list of desired values
+        colorscale='Viridis',  # choose a colorscale
+        opacity=0.8
+    )
+)])
+
+fig.update_layout(title='3D Scatter Plot of Energy Prices and Annual Bills',
+                  scene=dict(xaxis_title='Time Period', yaxis_title='Gas Price (p/kWh)', zaxis_title='Electricity Price (p/kWh)'))
+fig.show()
+
+# Plot 4: Interactive Bar Chart with Plotly Express / Gráfico 4: Gráfico de Barras Interativo com Plotly Express
+fig = px.bar(df, x='Time Period', y='Typical Annual Bill (£)', color='Time Period', title='Interactive Bar Chart of Typical Annual Bills')
+fig.show()
