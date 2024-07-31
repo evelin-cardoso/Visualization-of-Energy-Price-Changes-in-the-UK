@@ -1,0 +1,19 @@
+This project aims to visualize the recent changes in domestic gas and electricity prices in the UK. We will create various types of plots using Python, including 3D plots and interactive plots, to represent the data on energy prices and consumption. Each plot will be styled with appealing colors to enhance readability and engagement.
+
+Table of Contents
+Introduction
+Data Sources
+Installation
+Usage
+Visualizations
+Energy Prices Over Time
+Gas and Electricity Prices
+3D Scatter Plot of Energy Prices and Annual Bills
+Interactive Bar Chart of Typical Annual Bills
+Contributing
+License
+Introduction
+This project provides visual insights into the recent changes in domestic gas and electricity prices in the UK. The visualizations include 2D, 3D, and interactive charts created using Python libraries Matplotlib and Plotly.
+
+Data Sources
+The data used in this project is based on the typical domestic energy prices and consumption in the UK.
